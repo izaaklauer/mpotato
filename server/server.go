@@ -4,35 +4,35 @@ import (
 	"context"
 	"log"
 
-        "github.com/izaaklauer/%%wp_project%%/config"
-	%%wp_project%%v1 "github.com/izaaklauer/%%wp_project%%/gen/proto/go/%%wp_project%%/v1"
+        "github.com/izaaklauer/mpotato/config"
+	mpotatov1 "github.com/izaaklauer/mpotato/gen/proto/go/mpotato/v1"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type %%Wp_project%%Server struct {
-	%%wp_project%%v1.Unimplemented%%Wp_project%%ServiceServer
+type MpotatoServer struct {
+	mpotatov1.UnimplementedMpotatoServiceServer
 
-	config config.%%Wp_project%%
+	config config.Mpotato
 }
 
-// New%%Wp_project%%Server initializes a new server from config
-func New%%Wp_project%%Server(config config.%%Wp_project%%) (*%%Wp_project%%Server, error) {
+// NewMpotatoServer initializes a new server from config
+func NewMpotatoServer(config config.Mpotato) (*MpotatoServer, error) {
 	// Server-specific initialization, like DB clients, goes here.
 
-	server := %%Wp_project%%Server{
+	server := MpotatoServer{
 		config: config,
 	}
 
 	return &server, nil
 }
 
-func (s * %%Wp_project%%Server) HelloWorld(
+func (s * MpotatoServer) HelloWorld(
 	ctx context.Context,
-	req *%%wp_project%%v1.HelloWorldRequest,
-) (*%%wp_project%%v1.HelloWorldResponse, error) {
+	req *mpotatov1.HelloWorldRequest,
+) (*mpotatov1.HelloWorldResponse, error) {
 	log.Printf("HelloWorld request with message %q", req.Message)
 
-	resp := &%%wp_project%%v1.HelloWorldResponse{
+	resp := &mpotatov1.HelloWorldResponse{
 		RequestMessage: req.Message,
 		ConfigMessage:  s.config.HelloWorldMessage,
 		Now:            timestamppb.Now(),
